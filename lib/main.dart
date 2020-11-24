@@ -4,6 +4,9 @@ void main() {
   runApp(MaterialApp(
     title: "Awesome App",
     home: Homepage(),
+    theme: ThemeData(
+      primarySwatch: Colors.orange,
+    ),
   ));
 }
 
@@ -11,45 +14,46 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Awesome App"),
-        ),
-        body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                color: Colors.black,
-                width: 200,
-                height: 400,
-                //width: MediaQuery.of(context).size.width,
-                //height: MediaQuery.of(context).size.height, for giving height and
-                //width of whole page,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      width: 100,
-                      height: 100,
-                      color: Colors.orange,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      width: 100,
-                      height: 100,
-                      color: Colors.white,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      width: 100,
-                      height: 100,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
+      appBar: AppBar(
+        title: Text("Awesome App"),
+      ),
+      body: Container(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Utkarsh Chaurasia"),
+              accountEmail: Text("utkarsh103b@gmail.com"),
+              decoration: BoxDecoration(color: Colors.orange[300]),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://avatars2.githubusercontent.com/u/47274683?s=460&u=d0f1b40291f480413ce4ac9a96b6d4603289844e&v=4"),
               ),
-            )));
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              hoverColor: Colors.orange[300],
+              focusColor: Colors.orange[300],
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Account"),
+              subtitle: Text("Personal"),
+              trailing: Icon(Icons.edit),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Setting"),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
+      ),
+    );
   }
 }
